@@ -10,7 +10,7 @@ router.post('/signup', (req, res) => {
         if (err) {
             return res.status(500).json("error");
         }
-        else {
+        else { //TODO: The else is useless here since you put a return above
             const user = new Users({
                 userName: req.body.userName,
                 password: hash
@@ -38,7 +38,7 @@ router.post('/signin', (req, res) => {
                     return res.status(401).json('Unauthorized Access');
                 }
                 if (result) {
-                    console.log(`${user.userName}, signed in at ${moment(Date.now())}`)
+                    console.log(`${user.userName}, signed in at ${moment(Date.now())}`) //TODO: using moment only makes sense when we show stuff for the client. not for logging(which should provide accurate information)
                     const JWTToken = jwt.sign({
                         userName: user.userName,
                         _id: user._id
@@ -47,6 +47,7 @@ router.post('/signin', (req, res) => {
                         {
                             expiresIn: '2h'
                         });
+                        
                     return res.status(200).json({
                         success: 'Welcome to the JWT Auth',
                         token: JWTToken,

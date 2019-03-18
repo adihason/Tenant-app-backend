@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); //TODO: not in use... why did you require it?
 
 let checkToken = (req, res, next) => {
     //get auth header value
